@@ -1,8 +1,19 @@
 import * as React from "react";
 import Trash = require("react-icons/lib/fa/trash");
+import styled from "styled-components";
 
-export default class extends React.Component {
+const Bin = styled<{ color: string }>(Trash)`
+    color: ${({ color }) => color};
+`;
+
+interface IProps {
+    color: string;
+}
+
+export default class extends React.Component<IProps> {
     public render() {
-        return <Trash />;
+        const { color } = this.props;
+
+        return <Bin color={color} />;
     }
 }

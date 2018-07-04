@@ -4,5 +4,5 @@ import * as React from "react";
 import Bin from "../Bin";
 
 test("Render", () => {
-    shallow(<Bin />);
+    shallow(<Bin color="red" />);
 });
