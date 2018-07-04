@@ -6,6 +6,7 @@
 		"max-classes-per-file": false,
 		"no-console": false,
 		"no-shadowed-variable": false,
+		"no-unused-expression": false,
 		"no-var-requires": false
 	},
 	"linterOptions": {
