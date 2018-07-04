@@ -1,8 +1,8 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 
-import Garbage from "../Garbage";
+import Rubbish from "../Rubbish";
 
 test("Render", () => {
-    shallow(<Garbage />);
+    shallow(<Rubbish />);
 });
