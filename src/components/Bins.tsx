@@ -1,23 +1,21 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import Bins from "./Bins";
+import Bin from "./Bin";
 
-const App = styled.div`
-    width: 100%;
-    height: 100%;
+const Bins = styled.div`
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
 `;
 
 export default class extends React.Component {
     public render() {
         return (
-            <App>
-                <Bins />
-            </App>
+            <Bins>
+                <Bin color="blue" />
+                <Bin color="green" />
+                <Bin color="black" />
+            </Bins>
         );
     }
 }
