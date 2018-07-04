@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import { BinId } from "../domain";
 import { horizontalMargin } from "../style";
 import Bin from "./Bin";
 
@@ -16,9 +17,9 @@ export default class extends React.Component {
     public render() {
         return (
             <Bins>
-                <Bin color="blue" />
-                <Bin color="green" />
-                <Bin color="black" />
+                <Bin id={BinId.Garbage} />
+                <Bin id={BinId.Compost} />
+                <Bin id={BinId.Recycle} />
             </Bins>
         );
     }
