@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"lib": ["es6", "es7", "dom"],
+		"baseUrl": ".",
+		"outDir": "dist",
+		"rootDir": "src",
+		"target": "es5",
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"newLine": "LF"
+	}
+}

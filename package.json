@@ -1,0 +1,16 @@
+{
+	"private": true,
+	"name": "trashy-instructor",
+	"version": "0.1.0",
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w",
+		"lint": "tslint -c tslint.json -p tsconfig.json",
+		"start": "npm run build && electron ./dist/main.js"
+	},
+	"devDependencies": {
+		"electron": "^2.0.2",
+		"tslint": "^5.10.0",
+		"typescript": "^2.8.3"
+	}
+}
