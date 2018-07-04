@@ -3,6 +3,7 @@ import Trash = require("react-icons/lib/fa/trash");
 import styled from "styled-components";
 
 const Bin = styled<{ color: string }>(Trash)`
+    font-size: 10em;
     color: ${({ color }) => color};
 `;
 

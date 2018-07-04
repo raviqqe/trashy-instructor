@@ -1,4 +1,4 @@
-import { injectGlobal } from "styled-components";
+import { css, injectGlobal, InterpolationValue } from "styled-components";
 
 injectGlobal`
     * {
@@ -17,3 +17,29 @@ injectGlobal`
         height: 100%;
     }
 `;
+
+export function verticalMargin(margin: string): InterpolationValue[] {
+    return css`
+        > * {
+            margin-top: 0;
+            margin-bottom: ${margin};
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    `;
+}
+
+export function horizontalMargin(margin: string): InterpolationValue[] {
+    return css`
+        > * {
+            margin-left: 0;
+            margin-right: ${margin};
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    `;
+}
