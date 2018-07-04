@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import Bins from "./Bins";
+import Garbage from "./Garbage";
 
 const App = styled.div`
     width: 100%;
@@ -16,6 +17,7 @@ export default class extends React.Component {
     public render() {
         return (
             <App>
+                <Garbage />
                 <Bins />
             </App>
         );
