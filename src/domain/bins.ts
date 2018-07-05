@@ -13,8 +13,3 @@ export const bins = {
     [BinId.Compost]: { color: "green" },
     [BinId.Recycle]: { color: "blue" },
 };
-
-export interface IPosition {
-    x: number;
-    y: number;
-}
