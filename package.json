@@ -6,6 +6,7 @@
 		"build": "webpack-cli",
 		"test": "jest --coverage",
 		"lint": "tslint -c tslint.json -p tsconfig.json",
+		"watch": "webpack-cli --watch",
 		"start": "electron ./dist/main.js"
 	},
 	"devDependencies": {
