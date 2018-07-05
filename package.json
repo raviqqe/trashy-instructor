@@ -6,7 +6,7 @@
 		"build": "webpack-cli",
 		"test": "jest --coverage",
 		"lint": "tslint -c tslint.json -p tsconfig.json",
-		"start": "npm run build && electron ./dist/main.js"
+		"start": "electron ./dist/main.js"
 	},
 	"devDependencies": {
 		"@types/enzyme": "^3.1.11",
