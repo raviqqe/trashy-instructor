@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import { BinId, bins } from "../domain";
+import { elementToPosition } from "../infra";
 import { actionCreators, IActionCreators } from "../state/bins";
 
 const Wrapper = styled.div`
@@ -37,8 +38,7 @@ export default class extends React.Component<IProps> {
 
     public componentDidMount() {
         const { id, setPosition } = this.props;
-        const { left: x, top: y } = this.ref.current.getBoundingClientRect();
 
-        this.props.setPosition({ id, position: { x, y } });
+        this.props.setPosition({ id, position: elementToPosition(this.ref.current) });
     }
 }
