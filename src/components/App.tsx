@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import { RubbishId } from "../domain";
 import Bins from "./Bins";
 import Rubbish from "./Rubbish";
 
@@ -17,7 +18,7 @@ export default class extends React.Component {
     public render() {
         return (
             <App>
-                <Rubbish />
+                <Rubbish id={RubbishId.Apple} />
                 <Bins />
             </App>
         );

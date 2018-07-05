@@ -1,14 +1,21 @@
 import * as React from "react";
-import Apple = require("react-icons/lib/fa/apple");
 import styled from "styled-components";
 
-const Rubbish = styled(Apple)`
+import { rubbish, RubbishId } from "../domain";
+
+const Rubbish = styled.div`
     color: red;
     font-size: 10em;
 `;
 
-export default class extends React.Component {
+interface IProps {
+    id: RubbishId;
+}
+
+export default class extends React.Component<IProps> {
     public render() {
-        return <Rubbish />;
+        const Image = rubbish[this.props.id].image;
+
+        return <Rubbish><Image /></Rubbish>;
     }
 }
