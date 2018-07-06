@@ -6,9 +6,11 @@ import styled from "styled-components";
 import * as domain from "../domain";
 import * as message from "../state/message";
 
-const Message = styled.div`
+const Message = styled.div<{ shown: boolean }>`
   font-size: 2em;
   height: 2em;
+  transition: opacity 0.1s;
+  ${({ shown }) => (shown ? "" : `opacity: 0`)};
 `;
 
 const Name = styled.span<{ color: string }>`
@@ -19,29 +21,26 @@ const Name = styled.span<{ color: string }>`
 interface IProps extends Partial<message.IState> {}
 
 interface IState {
-  message: domain.IMessage | null;
+  message: domain.IMessage;
+  shown: boolean;
 }
 
 @connect(({ message }) => message)
 export default class extends React.Component<IProps> {
   public state: IState = {
-    message: null
+    message: { binId: domain.BinId.Garbage, rubbishId: domain.RubbishId.Apple },
+    shown: false
   };
 
   public timeout = window.setTimeout(() => undefined);
 
   public render() {
-    const { message } = this.state;
-
-    if (!message) {
-      return <Message />;
-    }
-
+    const { shown, message } = this.state;
     const bin = domain.bins[message.binId];
     const rubbish = domain.rubbish[message.rubbishId];
 
     return (
-      <Message>
+      <Message shown={shown}>
         Put <Name color={rubbish.color}>{rubbish.name}</Name> in{" "}
         <Name color={bin.color}>{bin.name}</Name>.
       </Message>
@@ -54,10 +53,10 @@ export default class extends React.Component<IProps> {
     if (!isEqual(props.message, message)) {
       clearTimeout(this.timeout);
 
-      this.setState({ message });
+      this.setState({ message, shown: true });
 
       this.timeout = window.setTimeout(
-        () => this.setState({ message: null }),
+        () => this.setState({ shown: false }),
         2000
       );
     }
