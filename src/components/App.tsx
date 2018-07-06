@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { RubbishId } from "../domain";
 import Bins from "./Bins";
+import Message from "./Message";
 import RubbishList from "./RubbishList";
 
 const App = styled.div`
@@ -19,6 +20,7 @@ export default class extends React.Component {
     public render() {
         return (
             <App>
+                <Message />
                 <RubbishList />
                 <Bins />
             </App>

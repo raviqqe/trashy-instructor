@@ -4,12 +4,14 @@ import thunk from "redux-thunk";
 import * as bins from "./bins";
 import * as environment from "./environment";
 import * as keyboard from "./keyboard";
+import * as message from "./message";
 import * as rubbish from "./rubbish";
 
 export default function(): Store {
     const store = createStore(combineReducers({
         bins: bins.reducer,
         environment: environment.reducer,
+        message: message.reducer,
         rubbish: rubbish.reducer,
     }), applyMiddleware(thunk));
 
