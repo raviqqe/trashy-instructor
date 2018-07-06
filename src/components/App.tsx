@@ -7,7 +7,7 @@ import Message from "./Message";
 import RubbishList from "./RubbishList";
 
 const App = styled.div`
-  background: linear-gradient(lightyellow, mistyrose);
+  background: khaki;
   width: 100%;
   height: 100%;
   display: flex;

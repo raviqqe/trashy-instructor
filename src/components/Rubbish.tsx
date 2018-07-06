@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { IMovement, rubbish, RubbishId } from "../domain";
 import { elementToPosition, positionsToMovement } from "../infra";
@@ -9,19 +9,20 @@ import * as bins from "../state/bins";
 const duration = 2000;
 
 const animation = ({ x, y }: IMovement) => keyframes`
-    0% {
-        visibility: visible;
-        opacity: 0;
-    }
+  0% {
+    visibility: visible;
+    opacity: 0;
+    transform: scale(0);
+  }
 
-    50% {
-        opacity: 1;
-        transform: scale(1) translate(0);
-    }
+  50% {
+    opacity: 1;
+    transform: scale(1) translate(0);
+  }
 
-    100% {
-        transform: scale(0.5) translate(${2 * x}px, ${2 * y}px);
-    }
+  100% {
+    transform: scale(0.5) translate(${2 * x}px, ${2 * y}px);
+  }
 `;
 
 const Rubbish = styled.div<{ movement: IMovement; moving: boolean }>`
