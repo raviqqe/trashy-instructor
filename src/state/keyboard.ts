@@ -6,17 +6,22 @@ const actionCreator = actionCreatorFactory("KEYBOARD");
 
 const setCurrentKey = actionCreator<string>("SET_CURRENT_KEY");
 
-export const initialState = {
-    currentKey: "",
+const setAndResetCurrentKey = (key: string): any => async (dispatch) => {
+    dispatch(setCurrentKey(key));
+    dispatch(setCurrentKey(null));
 };
 
-export type IState = typeof initialState;
+export interface IState {
+    currentKey: string | null;
+}
+
+export const initialState: IState = { currentKey: null };
 
 export const reducer = reducerWithInitialState(initialState)
     .case(setCurrentKey, (_, currentKey) => ({ currentKey }));
 
 export function initializeStore(store: Store): void {
     document.addEventListener("keydown", ({ keyCode }) => {
-        store.dispatch(setCurrentKey(String.fromCharCode(keyCode)));
+        store.dispatch(setAndResetCurrentKey(String.fromCharCode(keyCode)));
     });
 }
