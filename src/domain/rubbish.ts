@@ -2,6 +2,7 @@ import { BinId } from "./bins";
 
 export enum RubbishId {
     Apple = 1,
+    Paper,
 }
 
 export interface IRubbish {
@@ -15,5 +16,10 @@ export const rubbish: { [id: number]: IRubbish } = {
         binId: BinId.Compost,
         image: require("react-icons/lib/fa/apple"),
         key: "A",
+    },
+    [RubbishId.Paper]: {
+        binId: BinId.Recycle,
+        image: require("react-icons/lib/io/ios-paper"),
+        key: "P",
     },
 };

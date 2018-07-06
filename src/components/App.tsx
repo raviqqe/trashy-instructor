@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { RubbishId } from "../domain";
 import Bins from "./Bins";
-import Rubbish from "./Rubbish";
+import RubbishList from "./RubbishList";
 
 const App = styled.div`
     width: 100%;
@@ -18,7 +18,7 @@ export default class extends React.Component {
     public render() {
         return (
             <App>
-                <Rubbish id={RubbishId.Apple} />
+                <RubbishList />
                 <Bins />
             </App>
         );
