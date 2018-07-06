@@ -10,6 +10,8 @@ test("Set a bin position", async () => {
     const store = createStore();
     expect(getState(store)).toEqual(initialState);
 
-    store.dispatch(actionCreators.setPosition({ id: BinId.Garbage, position: { x: 20, y: 49 } }));
-    expect(getState(store)).toEqual({ ...initialState, [BinId.Garbage]: { x: 20, y: 49 } });
+    const position = { x: 20, y: 49 };
+
+    store.dispatch(actionCreators.setPosition({ id: BinId.Garbage, position }));
+    expect(getState(store)).toEqual({ ...initialState, [BinId.Garbage]: { position, shaken: false } });
 });

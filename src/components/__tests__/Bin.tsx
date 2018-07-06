@@ -18,7 +18,7 @@ test("Render", () => {
     const id = BinId.Garbage;
     const store = createStore();
 
-    expect(store.getState().bins[id]).toBe(null);
+    expect(store.getState().bins[id]).toEqual({ position: { x: 0, y: 0 }, shaken: false });
 
     mount(<Provider store={store}><Bin id={id} /></Provider>);
 
