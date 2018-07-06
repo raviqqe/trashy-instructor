@@ -6,5 +6,9 @@ import createStore from "../../state";
 import Message from "../Message";
 
 test("Render", () => {
-    shallow(<Provider store={createStore()}><Message /></Provider>);
+  shallow(
+    <Provider store={createStore()}>
+      <Message />
+    </Provider>
+  );
 });

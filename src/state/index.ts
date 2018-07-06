@@ -8,15 +8,18 @@ import * as message from "./message";
 import * as rubbish from "./rubbish";
 
 export default function(): Store {
-    const store = createStore(combineReducers({
-        bins: bins.reducer,
-        environment: environment.reducer,
-        message: message.reducer,
-        rubbish: rubbish.reducer,
-    }), applyMiddleware(thunk));
+  const store = createStore(
+    combineReducers({
+      bins: bins.reducer,
+      environment: environment.reducer,
+      message: message.reducer,
+      rubbish: rubbish.reducer
+    }),
+    applyMiddleware(thunk)
+  );
 
-    environment.initializeStore(store);
-    keyboard.initializeStore(store);
+  environment.initializeStore(store);
+  keyboard.initializeStore(store);
 
-    return store;
+  return store;
 }

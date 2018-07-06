@@ -7,5 +7,8 @@ import createStore from "./state";
 import "./style";
 
 ReactDOM.render(
-    <Provider store={createStore()}><App /></Provider>,
-    document.getElementById("root"));
+  <Provider store={createStore()}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);

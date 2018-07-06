@@ -13,10 +13,12 @@ export const actionCreators = { sendMessage };
 export type IActionCreators = typeof actionCreators;
 
 export interface IState {
-    message: IMessage | null;
+  message: IMessage | null;
 }
 
 export const initialState: IState = { message: null };
 
-export const reducer = reducerWithInitialState(initialState)
-    .case(sendMessage, (_, message) => ({ message }));
+export const reducer = reducerWithInitialState(initialState).case(
+  sendMessage,
+  (_, message) => ({ message })
+);

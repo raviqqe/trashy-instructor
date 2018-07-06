@@ -3,15 +3,15 @@ import { BinId, RubbishId } from "../../domain";
 import { actionCreators, initialState, IState } from "../message";
 
 function getState(store): IState {
-    return store.getState().message;
+  return store.getState().message;
 }
 
 test("Send a message", async () => {
-    const store = createStore();
-    expect(getState(store)).toEqual(initialState);
+  const store = createStore();
+  expect(getState(store)).toEqual(initialState);
 
-    const message = { binId: BinId.Garbage, rubbishId: RubbishId.Apple };
+  const message = { binId: BinId.Garbage, rubbishId: RubbishId.Apple };
 
-    store.dispatch(actionCreators.sendMessage(message));
-    expect(getState(store)).toEqual({ message });
+  store.dispatch(actionCreators.sendMessage(message));
+  expect(getState(store)).toEqual({ message });
 });

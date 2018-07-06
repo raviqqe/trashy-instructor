@@ -7,23 +7,23 @@ import Message from "./Message";
 import RubbishList from "./RubbishList";
 
 const App = styled.div`
-    background: linear-gradient(lightyellow, mistyrose);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background: linear-gradient(lightyellow, mistyrose);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default class extends React.Component {
-    public render() {
-        return (
-            <App>
-                <Message />
-                <RubbishList />
-                <Bins />
-            </App>
-        );
-    }
+  public render() {
+    return (
+      <App>
+        <Message />
+        <RubbishList />
+        <Bins />
+      </App>
+    );
+  }
 }

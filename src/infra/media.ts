@@ -1,3 +1,3 @@
 export function onWindowResize(callback: () => void): void {
-    window.addEventListener("resize", callback);
+  window.addEventListener("resize", callback);
 }

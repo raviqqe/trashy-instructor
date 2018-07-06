@@ -7,5 +7,9 @@ import createStore from "../../state";
 import Rubbish from "../Rubbish";
 
 test("Render", () => {
-    shallow(<Provider store={createStore()}><Rubbish id={RubbishId.Apple} /></Provider>);
+  shallow(
+    <Provider store={createStore()}>
+      <Rubbish id={RubbishId.Apple} />
+    </Provider>
+  );
 });
