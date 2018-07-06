@@ -2,9 +2,7 @@ import { Store } from "redux";
 import actionCreatorFactory from "typescript-fsa";
 import { reducerWithInitialState } from "typescript-fsa-reducers";
 
-const actionCreator = actionCreatorFactory("KEYBOARD");
-
-const setCurrentKey = actionCreator<string>("SET_CURRENT_KEY");
+const setCurrentKey = actionCreatorFactory("KEYBOARD")<string>("SET_CURRENT_KEY");
 
 const setAndResetCurrentKey = (key: string): any => async (dispatch) => {
     dispatch(setCurrentKey(key));
