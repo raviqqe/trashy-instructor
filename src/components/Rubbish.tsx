@@ -1,19 +1,39 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import { IMovement, rubbish, RubbishId } from "../domain";
 import { elementToPosition, positionsToMovement } from "../infra";
 import * as bins from "../state/bins";
 import * as keyboard from "../state/keyboard";
 
-const duration = 1000;
+const duration = 2000;
+
+const animation = ({ x, y }: IMovement) => keyframes`
+    0% {
+        visibility: visible;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1) translate(0);
+    }
+
+    100% {
+        transform: scale(0.5) translate(${2 * x}px, ${2 * y}px);
+    }
+`;
 
 const Rubbish = styled.div<{ movement: IMovement, moving: boolean }>`
-    color: red;
     font-size: 10em;
-    transition: transform ${duration}ms;
-    ${({ movement: { x, y }, moving }) => moving ? `transform: translate(${x}px, ${y}px);` : ""}
+    visibility: hidden;
+    transform-origin: 50% 50%;
+    ${({ movement, moving }) => moving ? `animation: ${animation(movement)} ${duration}ms;` : ""}
+
+    svg {
+        filter: drop-shadow(0 0 0.05em rgba(0, 0, 0, 0.5));
+    }
 `;
 
 interface IProps extends Partial<keyboard.IState> {
@@ -44,9 +64,10 @@ export default class extends React.Component<IProps, IState> {
 
     public componentDidUpdate(props: IProps) {
         const { bins, currentKey, id } = this.props;
+        const { moving } = this.state;
         const { binId, key } = rubbish[id];
 
-        if (props.currentKey !== currentKey && key === currentKey) {
+        if (!moving && props.currentKey !== currentKey && key === currentKey) {
             this.setState({
                 movement: positionsToMovement(elementToPosition(this.ref.current), bins[binId]),
                 moving: true,

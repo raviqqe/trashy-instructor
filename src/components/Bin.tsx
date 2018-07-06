@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 const Bin = styled<{ color: string }>(Trash)`
     font-size: 10em;
     color: ${({ color }) => color};
+    z-index: 100;
 `;
 
 interface IProps extends Partial<IActionCreators>, Partial<environment.IState> {
