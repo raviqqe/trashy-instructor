@@ -1,14 +1,19 @@
 import { Store } from "redux";
 
-import { rubbish } from "../domain";
+import { rubbish, RubbishId } from "../domain";
 import { actionCreators } from "./rubbish";
 
 const setAndResetCurrentKey = (key: string): any => (dispatch) => {
     for (const id in rubbish) {
-        if (rubbish[id].key === key) {
+        if (key === rubbish[id].key) {
             dispatch(actionCreators.throwRubbish(Number(id)));
             break;
         }
+    }
+
+    if (key === "Z") {
+        dispatch(actionCreators.throwRubbish(RubbishId.Apple));
+        setTimeout(() => dispatch(actionCreators.throwRubbish(RubbishId.Paper)), 1000);
     }
 };
 

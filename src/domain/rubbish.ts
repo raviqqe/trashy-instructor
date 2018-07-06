@@ -23,6 +23,6 @@ export const rubbish: { [id: number]: IRubbish } = {
     [RubbishId.Paper]: {
         binId: BinId.Recycle,
         image: styled(require("react-icons/lib/io/ios-paper"))`color: lightyellow`,
-        key: "P",
+        key: "S",
     },
 };
