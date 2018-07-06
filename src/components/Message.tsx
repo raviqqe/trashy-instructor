@@ -26,7 +26,7 @@ interface IState {
 }
 
 @connect(({ message }) => message)
-export default class extends React.Component<IProps> {
+export default class extends React.Component<IProps, IState> {
   public state: IState = {
     message: { binId: domain.BinId.Garbage, rubbishId: domain.RubbishId.Apple },
     shown: false
@@ -50,7 +50,7 @@ export default class extends React.Component<IProps> {
   public componentDidUpdate(props: IProps) {
     const { message } = this.props;
 
-    if (!isEqual(props.message, message)) {
+    if (message !== null && !isEqual(props.message, message)) {
       clearTimeout(this.timeout);
 
       this.setState({ message, shown: true });

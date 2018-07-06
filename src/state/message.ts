@@ -6,7 +6,14 @@ import { IMessage } from "../domain";
 
 const actionCreator = actionCreatorFactory("MESSAGE");
 
-const sendMessage = actionCreator<IMessage>("SEND_MESSAGE");
+const setMessage = actionCreator<IMessage | null>("SET_MESSAGE");
+
+function sendMessage(message: IMessage) {
+  return dispatch => {
+    dispatch(setMessage(message));
+    setTimeout(() => dispatch(setMessage(null)));
+  };
+}
 
 export const actionCreators = { sendMessage };
 
@@ -19,6 +26,6 @@ export interface IState {
 export const initialState: IState = { message: null };
 
 export const reducer = reducerWithInitialState(initialState).case(
-  sendMessage,
+  setMessage,
   (_, message) => ({ message })
 );

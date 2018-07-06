@@ -12,6 +12,6 @@ test("Send a message", async () => {
 
   const message = { binId: BinId.Garbage, rubbishId: RubbishId.Apple };
 
-  store.dispatch(actionCreators.sendMessage(message));
+  store.dispatch(actionCreators.sendMessage(message) as any);
   expect(getState(store)).toEqual({ message });
 });
