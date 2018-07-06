@@ -5,7 +5,6 @@ import styled, { css, keyframes } from "styled-components";
 import { IMovement, rubbish, RubbishId } from "../domain";
 import { elementToPosition, positionsToMovement } from "../infra";
 import * as bins from "../state/bins";
-import * as keyboard from "../state/keyboard";
 
 const duration = 2000;
 
@@ -36,9 +35,10 @@ const Rubbish = styled.div<{ movement: IMovement, moving: boolean }>`
     }
 `;
 
-interface IProps extends Partial<keyboard.IState> {
+interface IProps {
     bins?: bins.IState;
     id: RubbishId;
+    thrown?: boolean;
 }
 
 interface IState {
@@ -46,7 +46,7 @@ interface IState {
     moving: boolean;
 }
 
-@connect(({ bins, keyboard }) => ({ bins, ...keyboard }))
+@connect(({ bins, rubbish }, { id }: IProps) => ({ bins, ...rubbish[id] }))
 export default class extends React.Component<IProps, IState> {
     public ref: any = React.createRef();
     public state: IState = { movement: { x: 0, y: 0 }, moving: false };
@@ -63,11 +63,11 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidUpdate(props: IProps) {
-        const { bins, currentKey, id } = this.props;
+        const { bins, id, thrown } = this.props;
         const { moving } = this.state;
         const { binId, key } = rubbish[id];
 
-        if (!moving && props.currentKey !== currentKey && key === currentKey) {
+        if (!moving && !props.thrown && thrown) {
             this.setState({
                 movement: positionsToMovement(elementToPosition(this.ref.current), bins[binId]),
                 moving: true,
