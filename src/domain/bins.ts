@@ -10,7 +10,7 @@ interface IBin {
 }
 
 export const bins: { [id: number]: IBin } = {
-  [BinId.Garbage]: { color: "darkslategray", name: "Garbage" },
-  [BinId.Compost]: { color: "darkgreen", name: "Compost" },
-  [BinId.Recycle]: { color: "darkblue", name: "Recycle" }
+  [BinId.Garbage]: { color: "darkslategray", name: "Garbage Bin" },
+  [BinId.Compost]: { color: "darkgreen", name: "Compost Bin" },
+  [BinId.Recycle]: { color: "darkblue", name: "Recycle Bin" }
 };
