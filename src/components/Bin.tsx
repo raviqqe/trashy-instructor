@@ -1,7 +1,7 @@
 import * as React from "react";
 import Trash = require("react-icons/lib/fa/trash");
 import { connect } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { BinId, bins } from "../domain";
 import { elementToPosition } from "../infra";
@@ -14,26 +14,42 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
-const Bin = styled<{ color: string }>(Trash)`
+const animation = keyframes`
+    0% {}
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+`;
+
+const Bin = styled<{ color: string, shaken: boolean }>(Trash)`
     font-size: 10em;
     color: ${({ color }) => color};
     z-index: 100;
+    transform-origin: 50% 100%;
+    ${({ shaken }) => shaken ? `animation: ${animation} 0.2s infinite;` : ""}
 `;
 
 interface IProps extends Partial<IActionCreators>, Partial<environment.IState> {
     id: BinId;
+    shaken?: boolean;
 }
 
-@connect(({ environment }) => environment, actionCreators)
-export default class extends React.Component<IProps> {
+interface IState {
+    shaken: boolean;
+}
+
+@connect(({ bins, environment }, { id }: IProps) => ({ ...bins[id], ...environment }), actionCreators)
+export default class extends React.Component<IProps, IState> {
+    public state: IState = { shaken: false };
     private ref: any = React.createRef();
 
     public render() {
+        const { shaken } = this.state;
         const { color } = bins[this.props.id];
 
         return (
             <Wrapper innerRef={this.ref}>
-                <Bin color={color} />
+                <Bin color={color} shaken={shaken} />
             </Wrapper>
         );
     }
@@ -42,8 +58,15 @@ export default class extends React.Component<IProps> {
         this.updatePosition();
     }
 
-    public componentDidUpdate() {
-        this.updatePosition();
+    public componentDidUpdate(props: IProps) {
+        if (!props.windowResized && this.props.windowResized) {
+            this.updatePosition();
+        }
+
+        if (!this.state.shaken && !props.shaken && this.props.shaken) {
+            this.setState({ shaken: true });
+            setTimeout(() => this.setState({ shaken: false }), 1000);
+        }
     }
 
     private updatePosition() {

@@ -35,7 +35,7 @@ const Rubbish = styled.div<{ movement: IMovement, moving: boolean }>`
     }
 `;
 
-interface IProps {
+interface IProps extends Partial<bins.IActionCreators> {
     bins?: bins.IState;
     id: RubbishId;
     thrown?: boolean;
@@ -46,7 +46,7 @@ interface IState {
     moving: boolean;
 }
 
-@connect(({ bins, rubbish }, { id }: IProps) => ({ bins, ...rubbish[id] }))
+@connect(({ bins, rubbish }, { id }: IProps) => ({ bins, ...rubbish[id] }), bins.actionCreators)
 export default class extends React.Component<IProps, IState> {
     public ref: any = React.createRef();
     public state: IState = { movement: { x: 0, y: 0 }, moving: false };
@@ -63,13 +63,15 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidUpdate(props: IProps) {
-        const { bins, id, thrown } = this.props;
+        const { bins, id, shakeBin, thrown } = this.props;
         const { moving } = this.state;
         const { binId, key } = rubbish[id];
 
         if (!moving && !props.thrown && thrown) {
+            shakeBin(binId);
+
             this.setState({
-                movement: positionsToMovement(elementToPosition(this.ref.current), bins[binId]),
+                movement: positionsToMovement(elementToPosition(this.ref.current), bins[binId].position),
                 moving: true,
             });
 
