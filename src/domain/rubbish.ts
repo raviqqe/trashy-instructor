@@ -5,7 +5,8 @@ import { BinId } from "./bins";
 
 export enum RubbishId {
   Apple = 1,
-  Paper
+  Paper,
+  Pencil
 }
 
 export interface IRubbish {
@@ -34,5 +35,14 @@ export const rubbish: { [id: number]: IRubbish } = {
     `,
     key: "S",
     name: "Paper"
+  },
+  [RubbishId.Pencil]: {
+    binId: BinId.Garbage,
+    color: "olivedrab",
+    image: styled(require("react-icons/lib/fa/pencil"))`
+      color: olivedrab;
+    `,
+    key: "D",
+    name: "Pencil"
   }
 };
